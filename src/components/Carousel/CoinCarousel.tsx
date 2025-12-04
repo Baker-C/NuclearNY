@@ -5,235 +5,202 @@ import { createStyles } from '@/utils/createStyles';
 import styles from './CoinCarousel.module.css';
 
 export interface CoinCarouselProps {
-  /** Number of coins in the carousel */
-  coinCount?: number;
-  /** Duration of one complete loop in seconds */
-  loopDuration?: number;
-  /** Duration coins stay in showcase position in seconds */
-  showcaseDuration?: number;
+  // ============ VELOCITY & PATH CONFIG ============
+  /** Velocity during fast section (progress/sec) */
+  fastVelocity?: number;
+  /** Velocity during slow section (progress/sec) */
+  slowVelocity?: number;
+  /** Portion of circle for fast section (0-1) */
+  fastPathPercent?: number;
+  /** Portion of circle for slow section (0-1) */
+  slowPathPercent?: number;
+  // ================================================
   /** Whether animation autoplays */
   autoplay?: boolean;
-  /** CSS perspective value */
-  perspective?: number;
-  /** GSAP easing curve */
-  easing?: string;
   /** Ellipse width in pixels */
   ellipseWidth?: number;
   /** Ellipse height in pixels */
   ellipseHeight?: number;
+  /** Tilt angle of the ellipse in degrees (tilts around X-axis) */
+  tiltAngle?: number;
+  /** Horizontal offset in pixels */
+  offsetX?: number;
+  /** Vertical offset in pixels */
+  offsetY?: number;
+  /** CSS perspective value for 3D effect */
+  perspective?: number;
   /** Coin size in pixels */
   coinSize?: number;
   /** Custom coin content renderer */
-  renderCoin?: (index: number) => React.ReactNode;
-}
-
-interface CoinConfig {
-  index: number;
-  element: HTMLDivElement;
+  renderCoin?: () => React.ReactNode;
 }
 
 const DEFAULT_PROPS: Required<Omit<CoinCarouselProps, 'renderCoin'>> = {
-  coinCount: 5,
-  loopDuration: 10,
-  showcaseDuration: 1.5,
+  // Velocity & path config
+  fastVelocity: 0.5,
+  slowVelocity: 0.1,
+  fastPathPercent: 0.1,
+  slowPathPercent: 0.6,
+  // Other props
   autoplay: true,
-  perspective: 1000,
-  easing: 'power1.inOut',
-  ellipseWidth: 600,
-  ellipseHeight: 300,
+  ellipseWidth: 200,
+  ellipseHeight: 100,
+  tiltAngle: 60,
+  offsetX: 0,
+  offsetY: 0,
+  perspective: 800,
   coinSize: 120,
 };
 
 export const CoinCarousel: React.FC<CoinCarouselProps> = ({
-  coinCount = DEFAULT_PROPS.coinCount,
-  loopDuration = DEFAULT_PROPS.loopDuration,
-  showcaseDuration = DEFAULT_PROPS.showcaseDuration,
+  // Velocity & path config
+  fastVelocity = DEFAULT_PROPS.fastVelocity,
+  slowVelocity = DEFAULT_PROPS.slowVelocity,
+  fastPathPercent = DEFAULT_PROPS.fastPathPercent,
+  slowPathPercent = DEFAULT_PROPS.slowPathPercent,
+  // Other props
   autoplay = DEFAULT_PROPS.autoplay,
-  perspective = DEFAULT_PROPS.perspective,
-  easing = DEFAULT_PROPS.easing,
   ellipseWidth = DEFAULT_PROPS.ellipseWidth,
   ellipseHeight = DEFAULT_PROPS.ellipseHeight,
+  tiltAngle = DEFAULT_PROPS.tiltAngle,
+  offsetX = DEFAULT_PROPS.offsetX,
+  offsetY = DEFAULT_PROPS.offsetY,
+  perspective = DEFAULT_PROPS.perspective,
   coinSize = DEFAULT_PROPS.coinSize,
   renderCoin,
 }) => {
   const { theme } = useAppTheme();
   const themeStyles = useMemo(() => createStyles(theme), [theme]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const coinRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const coinRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({ progress: 0, velocity: fastVelocity });
+  const tickerCallbackRef = useRef<(() => void) | null>(null);
 
-  // Calculate ellipse parameters
-  const ellipseConfig = useMemo(() => {
-    const a = ellipseWidth / 2; // Semi-major axis
-    const b = ellipseHeight / 2; // Semi-minor axis
-    return { a, b };
-  }, [ellipseWidth, ellipseHeight]);
+  // Calculate ellipse semi-axes
+  const radiusX = ellipseWidth / 2;
+  const radiusY = ellipseHeight / 2;
+  
+  // Convert tilt angle to radians
+  const tiltRad = (tiltAngle * Math.PI) / 180;
 
-  // Calculate position on ellipse at given angle
-  // Angle 0 = right side, π/2 = bottom, π = left side, 3π/2 = top
-  const getEllipsePosition = (angle: number) => {
-    const { a, b } = ellipseConfig;
-    const x = a * Math.cos(angle);
-    const y = b * Math.sin(angle);
-    // Z depth: coins at front (angle = 0) have highest z, back (angle = π) have lowest z
-    // Use cosine to map angle to z depth smoothly
-    const z = b * (1 - Math.cos(angle)) - b; // Range from -b (back) to b (front)
-    return { x, y, z };
+  // Calculate 3D position on tilted ellipse
+  const getPosition = (angle: number) => {
+    // Base ellipse position (in XY plane)
+    const baseX = Math.cos(angle) * radiusX;
+    const baseY = Math.sin(angle) * radiusY;
+    
+    // Apply tilt rotation around X-axis
+    // This transforms Y -> Y*cos(tilt) and adds Z component
+    const x = baseX + offsetX;
+    const y = baseY * Math.cos(tiltRad) + offsetY;
+    const z = baseY * Math.sin(tiltRad);
+    
+    // Scale based on z-depth for enhanced 3D effect
+    const scale = 1 + (z / (radiusY * 2)) * 0.3;
+    
+    return { x, y, z, scale };
   };
 
-  // Calculate scale and z position with showcase enhancement at front
-  const getCarouselTransform = useMemo(() => {
-    return (angle: number, progress: number) => {
-      const basePos = getEllipsePosition(angle);
-      
-      // Normalize angle to 0-2π range
-      const normalizedAngle = ((angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-      
-      // Distance from front (angle = 0 or 2π)
-      const distanceFromFront = Math.min(normalizedAngle, Math.PI * 2 - normalizedAngle);
-      
-      // Showcase zone: within showcaseDuration portion of the loop (centered at front)
-      // Convert time duration to angle span
-      const showcaseZoneSize = (showcaseDuration / loopDuration) * Math.PI;
-      const isInShowcaseZone = distanceFromFront < showcaseZoneSize;
-      
-      // Base scale based on z position (closer = larger)
-      const normalizedZ = (basePos.z + ellipseConfig.b) / (2 * ellipseConfig.b);
-      let scale = 0.4 + normalizedZ * 0.6;
-      let z = basePos.z;
-      
-      // Enhance showcase: bring forward and scale up when in showcase zone
-      if (isInShowcaseZone) {
-        const showcaseProgress = 1 - (distanceFromFront / showcaseZoneSize);
-        // Smooth ease-in-out curve for showcase enhancement
-        const easeProgress = showcaseProgress < 0.5
-          ? 2 * showcaseProgress * showcaseProgress
-          : 1 - Math.pow(-2 * showcaseProgress + 2, 2) / 2;
-        
-        // Bring forward and scale up during showcase
-        z = basePos.z + ellipseConfig.b * 0.6 * easeProgress;
-        scale = scale + 0.6 * easeProgress;
-      }
-      
-      return {
-        x: basePos.x,
-        y: basePos.y,
-        z,
-        scale,
-      };
-    };
-  }, [ellipseConfig, showcaseDuration, loopDuration]);
-
-  // Create smooth continuous carousel animation for a single coin
-  const createCoinAnimation = useMemo(() => {
-    return (coin: CoinConfig, startAngle: number) => {
-      const totalAngle = Math.PI * 2; // Full circle
-      
-      // Use keyframes for smooth carousel motion around the ellipse
-      // Fewer keyframes with GSAP's smooth interpolation
-      const keyframeCount = 40; // Balance between smoothness and performance
-      const segmentDuration = loopDuration / keyframeCount;
-      
-      const coinTimeline = gsap.timeline();
-      
-      // Animate through keyframes for smooth continuous carousel motion
-      for (let i = 0; i <= keyframeCount; i++) {
-        const progress = i / keyframeCount;
-        const angle = startAngle + totalAngle * progress;
-        const transform = getCarouselTransform(angle, progress);
-        
-        if (i === 0) {
-          // Set initial position
-          gsap.set(coin.element, {
-            x: transform.x,
-            y: transform.y,
-            z: transform.z,
-            scale: transform.scale,
-          });
-        } else {
-          // Animate to this keyframe
-          coinTimeline.to(coin.element, {
-            x: transform.x,
-            y: transform.y,
-            z: transform.z,
-            scale: transform.scale,
-            duration: segmentDuration,
-            ease: easing,
-          }, coinTimeline.duration());
-        }
-      }
-      
-      return coinTimeline;
-    };
-  }, [getCarouselTransform, loopDuration, easing]);
-
-  // Initialize and start animation
+  // Initialize and start tilted elliptical animation with velocity-based approach
   useEffect(() => {
-    if (!containerRef.current || !autoplay) return;
+    if (!containerRef.current || !coinRef.current || !autoplay) return;
 
-    // Clear any existing timeline
-    if (timelineRef.current) {
-      timelineRef.current.kill();
+    // Clear any existing animation
+    if (tickerCallbackRef.current) {
+      gsap.ticker.remove(tickerCallbackRef.current);
     }
 
-    // Filter out null refs and create coin configs
-    const coins: CoinConfig[] = coinRefs.current
-      .filter((ref): ref is HTMLDivElement => ref !== null)
-      .map((element, index) => ({ index, element }));
+    const state = stateRef.current;
+    state.progress = 0;
+    state.velocity = fastVelocity;
 
-    if (coins.length === 0) return;
+    // Calculate path boundaries for each segment
+    // Segment 1: fast (0 to fastPathPercent)
+    // Segment 2: transition fast→slow
+    // Segment 3: slow
+    // Segment 4: transition slow→fast
+    const transitionPathPercent = (1 - fastPathPercent - slowPathPercent) / 2;
+    
+    // Offset so slow section is centered at front of ellipse (where z is max)
+    const startOffset = transitionPathPercent / 2;
+    
+    const seg1End = fastPathPercent;
+    const seg2End = seg1End + transitionPathPercent;
+    const seg3End = seg2End + slowPathPercent;
+    // seg4 goes from seg3End to 1.0
 
-    // Create master timeline
-    const masterTimeline = gsap.timeline({
-      repeat: -1,
-      defaults: { ease: easing },
-    });
+    // Get velocity based on position (progress) on the ellipse
+    const getVelocityAtProgress = (p: number): number => {
+      if (p < seg1End) {
+        // Segment 1: constant fast
+        return fastVelocity;
+      } else if (p < seg2End) {
+        // Segment 2: transition fast → slow (linear interpolation)
+        const t = (p - seg1End) / transitionPathPercent;
+        return fastVelocity + (slowVelocity - fastVelocity) * t;
+      } else if (p < seg3End) {
+        // Segment 3: constant slow
+        return slowVelocity;
+      } else {
+        // Segment 4: transition slow → fast (linear interpolation)
+        const t = (p - seg3End) / transitionPathPercent;
+        return slowVelocity + (fastVelocity - slowVelocity) * t;
+      }
+    };
 
-    // Add each coin's animation with offset
-    coins.forEach((coin, i) => {
-      const startAngle = (i / coinCount) * Math.PI * 2;
-      const coinTimeline = createCoinAnimation(coin, startAngle);
-      // Offset each coin by its position in the cycle
-      // This ensures coins are evenly spaced around the carousel
-      const offset = (i / coinCount) * loopDuration;
-      masterTimeline.add(coinTimeline, offset);
-    });
+    // Ticker callback: get velocity based on position, then integrate
+    const updateProgress = () => {
+      const deltaTime = gsap.ticker.deltaRatio() / 60; // Convert to seconds
+      
+      // Get velocity based on current position
+      state.velocity = getVelocityAtProgress(state.progress);
+      
+      // Integrate velocity into progress
+      state.progress += state.velocity * deltaTime;
+      
+      // Wrap progress to stay in 0-1 range
+      if (state.progress >= 1) {
+        state.progress -= 1;
+      }
 
-    timelineRef.current = masterTimeline;
+      // Update coin position (add startOffset to rotate slow section to front)
+      const angle = (state.progress + startOffset) * Math.PI * 2;
+      const pos = getPosition(angle);
+      
+      gsap.set(coinRef.current, {
+        x: pos.x,
+        y: pos.y,
+        z: pos.z,
+        scale: pos.scale,
+      });
+    };
+
+    tickerCallbackRef.current = updateProgress;
+    gsap.ticker.add(updateProgress);
 
     // Cleanup
     return () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-        timelineRef.current = null;
+      if (tickerCallbackRef.current) {
+        gsap.ticker.remove(tickerCallbackRef.current);
+        tickerCallbackRef.current = null;
       }
     };
-  }, [
-    coinCount,
-    loopDuration,
-    showcaseDuration,
-    autoplay,
-    easing,
-    ellipseWidth,
-    ellipseHeight,
-    createCoinAnimation,
-  ]);
+  }, [autoplay, radiusX, radiusY, tiltRad, offsetX, offsetY, fastVelocity, slowVelocity, fastPathPercent, slowPathPercent]);
 
-  // Set initial positions
+  // Set initial position
   useEffect(() => {
-    coinRefs.current.forEach((coinRef, i) => {
-      if (!coinRef) return;
-      const startAngle = (i / coinCount) * Math.PI * 2;
-      const transform = getCarouselTransform(startAngle, 0);
-
-      gsap.set(coinRef, {
-        x: transform.x,
-        y: transform.y,
-        z: transform.z,
-        scale: transform.scale,
-      });
+    if (!coinRef.current) return;
+    const transitionPathPercent = (1 - fastPathPercent - slowPathPercent) / 2;
+    const startOffset = -(transitionPathPercent / 2);
+    const angle = (stateRef.current.progress + startOffset) * Math.PI * 2;
+    const pos = getPosition(angle);
+    gsap.set(coinRef.current, {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+      scale: pos.scale,
     });
-  }, [coinCount, ellipseWidth, ellipseHeight, loopDuration, showcaseDuration, getCarouselTransform]);
+  }, [radiusX, radiusY, tiltRad, offsetX, offsetY, fastPathPercent, slowPathPercent]);
 
   const containerStyle = useMemo(
     () => ({
@@ -258,24 +225,19 @@ export const CoinCarousel: React.FC<CoinCarouselProps> = ({
       style={containerStyle}
     >
       <div className={styles.carousel}>
-        {Array.from({ length: coinCount }).map((_, index) => (
-          <div
-            key={index}
-            ref={(el) => {
-              coinRefs.current[index] = el;
-            }}
-            className={styles.coin}
-            style={coinStyle}
-          >
-            {renderCoin ? (
-              renderCoin(index)
-            ) : (
-              <div className={styles.coinDefault}>
-                <span className={styles.coinLabel}>{index + 1}</span>
-              </div>
-            )}
-          </div>
-        ))}
+        <div
+          ref={coinRef}
+          className={styles.coin}
+          style={coinStyle}
+        >
+          {renderCoin ? (
+            renderCoin()
+          ) : (
+            <div className={styles.coinDefault}>
+              <span className={styles.coinLabel}>$</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

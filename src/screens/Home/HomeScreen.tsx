@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useAppTheme } from '@/utils/useAppTheme';
 import { createStyles } from '@/utils/createStyles';
-import { CoinCarousel } from '@/components/Carousel';
 import styles from './HomeScreen.module.css';
 
 export const HomeScreen: React.FC = () => {
@@ -11,17 +10,13 @@ export const HomeScreen: React.FC = () => {
   return (
     <div className={styles.container} style={themeStyles}>
       <div className={styles.content}>
-        <CoinCarousel />
         <div className={styles.header}>
           <h1 className={styles.title}>Welcome to NuclearNY</h1>
         </div>
         <div className={styles.components}>
           <section>
             <h2 className={styles.heading}>About</h2>
-            <p className={styles.text}>
-              This is the home page of NuclearNY. Explore the site to discover
-              more about our services and offerings.
-            </p>
+
           </section>
         </div>
       </div>
