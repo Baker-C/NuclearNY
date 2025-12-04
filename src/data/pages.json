@@ -1,0 +1,1070 @@
+{
+  "home": {
+    "title": "Welcome Home",
+    "url": "home",
+    "slugLayout": "home-page",
+    "components": [
+      {
+        "required": true,
+        "component": {
+          "type": "Heading",
+          "value": "Welcome to NuclearNY"
+        }
+      },
+      {
+        "required": false,
+        "component": {
+          "type": "Text",
+          "value": "A modern React TypeScript application"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": false,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Image"
+              }
+            }
+          ],
+          "value": [
+            {
+              "required": true,
+              "component": {
+                "type": "Image",
+                "value": {
+                  "src": "/images/hero.jpg",
+                  "alt": "Hero image"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "navigation": {
+    "title": "Navigation",
+    "url": "navigation",
+    "slugLayout": "navigation",
+    "components": [
+      {
+        "required": true,
+        "component": {
+          "type": "Heading",
+          "value": "Navigation"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "Image",
+          "value": {
+            "src": "/images/logo.png",
+            "alt": "NuclearNY Logo"
+          }
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "required": false,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "required": false,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "value": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text",
+                "value": "Information"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "value": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "Text",
+                      "value": "About"
+                    }
+                  },
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "About Us"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/about-us",
+                              "text": "About Us"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Our Team"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/our-team",
+                              "text": "Our Team"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "required": false,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "value": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "Text",
+                      "value": "NY Climate Policy"
+                    }
+                  },
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "New York's Climate Plan"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/climate-plan",
+                              "text": "New York's Climate Plan"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Bright Future"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/bright-future",
+                              "text": "Bright Future"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Nuclear Power Generation in New York"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/nuclear-power-ny",
+                              "text": "Nuclear Power Generation in New York"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Indian Point and NYC Electricity"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/indian-point",
+                              "text": "Indian Point and NYC Electricity"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "required": false,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "value": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "Text",
+                      "value": "Resources"
+                    }
+                  },
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Resources"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/resources",
+                              "text": "Resources"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "News & Press Releases"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/news",
+                              "text": "News & Press Releases"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Why Nuclear Power"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/why-nuclear",
+                              "text": "Why Nuclear Power"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Clean Hydrogen"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/clean-hydrogen",
+                              "text": "Clean Hydrogen"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "value": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text",
+                "value": "Events"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "value": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Events"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/events",
+                              "text": "Events"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text",
+                            "value": "Nuclear Symposium"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL",
+                            "value": {
+                              "href": "/nuclear-symposium",
+                              "text": "Nuclear Symposium"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL",
+          "value": {
+            "href": "/action",
+            "text": "Action"
+          }
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL",
+          "value": {
+            "href": "/contact",
+            "text": "Contact"
+          }
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL",
+          "value": {
+            "href": "/donate",
+            "text": "Donate"
+          }
+        }
+      }
+    ]
+  }
+}
+

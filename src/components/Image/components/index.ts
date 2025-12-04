@@ -1,0 +1,2 @@
+export { ImageOverlay } from './ImageOverlay';
+

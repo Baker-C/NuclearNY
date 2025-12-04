@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  max-width: 1200px;
+  width: 100%;
+  padding: var(--spacing-xl);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.hero {
+  width: 100%;
+  margin-bottom: var(--spacing-xxl);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  color: var(--color-text);
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xxl) 0;
+  line-height: 1.2;
+}
+
+.components {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.heading {
+  color: var(--color-text);
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.text {
+  color: var(--color-textSecondary);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: var(--spacing-md) 0;
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 18px;
+  transition: opacity 0.2s;
+}
+
+.link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.fileLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 16px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  display: inline-block;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.fileLink:hover {
+  opacity: 0.9;
+  background-color: var(--color-surface);
+}
+
+.componentList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: var(--spacing-md);
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+}
+

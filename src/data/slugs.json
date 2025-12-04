@@ -1,0 +1,486 @@
+{
+  "home-page": {
+    "title": "Home Page Layout",
+    "url": "home",
+    "components": [
+      {
+        "required": true,
+        "component": {
+          "type": "Heading"
+        }
+      },
+      {
+        "required": false,
+        "component": {
+          "type": "Text"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": false,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Image"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "navigation": {
+    "title": "Navigation Layout",
+    "url": "navigation",
+    "components": [
+      {
+        "required": true,
+        "component": {
+          "type": "Heading"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "Image"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "ComponentList",
+          "rigid": true,
+          "components": [
+            {
+              "required": true,
+              "component": {
+                "type": "Text"
+              }
+            },
+            {
+              "required": true,
+              "component": {
+                "type": "ComponentList",
+                "rigid": false,
+                "components": [
+                  {
+                    "required": true,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "required": false,
+                    "component": {
+                      "type": "ComponentList",
+                      "rigid": true,
+                      "components": [
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "Text"
+                          }
+                        },
+                        {
+                          "required": true,
+                          "component": {
+                            "type": "URL"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL"
+        }
+      },
+      {
+        "required": true,
+        "component": {
+          "type": "URL"
+        }
+      }
+    ]
+  }
+}
+
