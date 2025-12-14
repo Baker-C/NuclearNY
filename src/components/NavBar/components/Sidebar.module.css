@@ -62,6 +62,22 @@
   color: var(--color-primary);
 }
 
+/* Glass variant styles */
+.sidebar.glass {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.glass .sidebarContent a {
+  color: white;
+}
+
+.sidebar.glass .sidebarContent a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
 @media (max-width: 762px) {
   .overlay {
     display: block;

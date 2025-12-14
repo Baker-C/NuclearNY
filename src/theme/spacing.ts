@@ -7,5 +7,8 @@ export const spacing: ThemeSpacing = {
   lg: '24px',
   xl: '32px',
   xxl: '48px',
+  xxxl: '64px',
+  maxl: '90px',
+  maxWidth: '1400px',
 };
 

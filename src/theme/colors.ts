@@ -1,14 +1,23 @@
 import { ThemeColors } from './types';
 
 export const colors: ThemeColors = {
-  primary: '#007AFF',
-  secondary: '#5856D6',
-  background: '#FFFFFF',
-  surface: '#F2F2F7',
-  text: '#000000',
-  textSecondary: '#8E8E93',
-  error: '#FF3B30',
-  success: '#34C759',
-  warning: '#FF9500',
+  primary: '#477977',
+  secondary: '#295982',
+  primaryBg: '#FFFFFF',
+  secondaryBg: '#F2F2F7',
+  primaryText: '#000000',
+  secondaryText: '#8E8E93',
+
+  lightGreen: '#c2e06e',
+  green: '#6aa242',
+  darkGreen: '#09614e',
+  blue: '#3749a3',
+  darkBlue: '#264549',
+  
+  lightGray: '#F5F5F5',
+  darkGray: '#8E8E93',
+  offWhite: '#D7F0E9',
+  white: '#FFFFFF',
+  black: '#000000'
 };
 

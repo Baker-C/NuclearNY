@@ -14,6 +14,7 @@ export interface ImageProps
   loading?: 'lazy' | 'eager';
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
   onClick?: () => void;
+  popup?: boolean;
 }
 
 export const Image: React.FC<ImageProps> = ({
@@ -25,6 +26,7 @@ export const Image: React.FC<ImageProps> = ({
   className,
   onClick,
   objectFit,
+  popup = true,
   ...rest
 }) => {
   const { theme } = useAppTheme();
@@ -42,7 +44,8 @@ export const Image: React.FC<ImageProps> = ({
   const handleImageClick = () => {
     if (onClick) {
       onClick();
-    } else {
+    }
+    if (popup) {
       setIsOverlayOpen(true);
     }
   };
@@ -72,14 +75,14 @@ export const Image: React.FC<ImageProps> = ({
           }}
           {...rest}
         />
-        <ImageOverlay
+        {popup && <ImageOverlay
           src={src}
           alt={alt}
           isOpen={isOverlayOpen}
           onClose={() => setIsOverlayOpen(false)}
           initialWidth={width}
           initialHeight={height}
-        />
+        />}
       </>
     </ImageLoader>
   );

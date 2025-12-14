@@ -11,11 +11,13 @@ export const fonts: ThemeFonts = {
     'xxxl': '48px',
   },
   families: {
-    sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    sans: '"Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    quicksand: '"Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     serif: 'Georgia, "Times New Roman", Times, serif',
     mono: '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
   },
   weights: {
+    thin: '300',
     light: '300',
     normal: '400',
     medium: '500',

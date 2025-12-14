@@ -4,6 +4,7 @@ import { copyService } from '@/services';
 import { ComponentList, BaseComponent } from '@/types/copy';
 import { useAppTheme } from '@/utils/useAppTheme';
 import { createStyles } from '@/utils/createStyles';
+import { useNavBar } from '@/providers/NavBarProvider';
 import { Dropdown, HamburgerMenu, Sidebar } from './components';
 import styles from './NavBar.module.css';
 
@@ -46,6 +47,7 @@ const extractLinksFromComponentList = (
 export const NavBar: React.FC = () => {
   const { theme } = useAppTheme();
   const themeStyles = useMemo(() => createStyles(theme), [theme]);
+  const { variant, hidden, setHidden } = useNavBar();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const navigationData = copyService.getPage({ pageId: 'navigation' });
@@ -65,6 +67,49 @@ export const NavBar: React.FC = () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  // Scroll detection for auto-hiding navbar
+  useEffect(() => {
+    let lastScrollY = window.scrollY || document.documentElement.scrollTop;
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+          const scrollDifference = currentScrollY - lastScrollY;
+          
+          // Always show navbar at the top (within 50px)
+          if (currentScrollY <= 50) {
+            setHidden(false);
+          } 
+          // Only process scroll direction if we've scrolled past the threshold
+          else if (Math.abs(scrollDifference) > 5) {
+            if (scrollDifference > 0) {
+              // Scrolling down - hide navbar
+              setHidden(true);
+            } else if (scrollDifference < 0) {
+              // Scrolling up - show navbar
+              setHidden(false);
+            }
+          }
+          
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Listen to scroll on both window and document for better compatibility
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [setHidden]);
 
   if (!navigationData) {
     return null;
@@ -152,6 +197,7 @@ export const NavBar: React.FC = () => {
             extraColumn1={extraColumns[0]}
             extraColumn2={extraColumns[1]}
             extraColumn3={extraColumns[2]}
+            variant={variant}
           />
         );
       }
@@ -181,9 +227,12 @@ export const NavBar: React.FC = () => {
     setIsSidebarOpen(false);
   };
 
+  // Combine base styles with variant-specific class and hidden state
+  const navBarClasses = `${styles.navBar} ${variant === 'glass' ? styles.glass : ''} ${hidden ? styles.hidden : ''}`;
+
   return (
     <>
-      <nav className={styles.navBar} style={themeStyles}>
+      <nav className={navBarClasses} style={themeStyles}>
         <div className={styles.container}>
           <div className={styles.logoContainer}>
             <Link to="/" className={styles.logo} onClick={closeSidebar}>
@@ -202,7 +251,7 @@ export const NavBar: React.FC = () => {
         </div>
       </nav>
       {isMobile && (
-        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar}>
+        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} variant={variant}>
           {navItems}
         </Sidebar>
       )}

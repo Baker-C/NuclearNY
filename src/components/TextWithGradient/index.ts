@@ -1,0 +1,2 @@
+export { TextWithGradient } from './TextWithGradient';
+

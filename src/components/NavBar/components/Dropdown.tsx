@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink } from './NavLink';
+import { NavBarVariant } from '@/providers/NavBarProvider';
 import styles from './Dropdown.module.css';
 
 type ColumnData = [string, ...Array<{ title: string; href: string }>];
@@ -11,6 +12,7 @@ interface DropdownProps {
   extraColumn1?: ColumnData;
   extraColumn2?: ColumnData;
   extraColumn3?: ColumnData;
+  variant?: NavBarVariant;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -19,6 +21,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   extraColumn1,
   extraColumn2,
   extraColumn3,
+  variant = 'default',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -44,12 +47,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   // If no links, still render the title as a link (fallback)
   if (mainLinks.length === 0 && !extraColumn1 && !extraColumn2 && !extraColumn3) {
-    return <NavLink title={title} href="#" />;
+    return <NavLink title={title} href="#" variant={variant} />;
   }
 
   if (!hasMultipleLinks && mainLinks.length === 1) {
     // Single link - render as regular link without dropdown
-    return <NavLink title={title} href={mainLinks[0].href} />;
+    return <NavLink title={title} href={mainLinks[0].href} variant={variant} />;
   }
 
   const hasExtraColumns = extraColumn1 || extraColumn2 || extraColumn3;
@@ -79,10 +82,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div onClick={handleToggle}>
-        <NavLink title={title} href={mainLinks[0]?.href || '#'} hasDropdown={true} />
+        <NavLink title={title} href={mainLinks[0]?.href || '#'} hasDropdown={true} variant={variant} />
       </div>
       {isOpen && (
-        <div className={styles.dropdownMenu}>
+        <div className={`${styles.dropdownMenu} ${variant === 'glass' ? styles.glass : ''}`}>
           <div className={styles.dropdownColumns}>
             {/* First column - main links */}
             <div className={styles.dropdownColumn}>

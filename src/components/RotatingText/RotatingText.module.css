@@ -1,0 +1,69 @@
+.letter {
+  display: inline-block;
+  animation: translateIn 0.6s ease-out forwards;
+  animation-delay: calc(var(--rotationDelay, 0s) + var(--sequentialDelay, 0s));
+  opacity: 0;
+}
+
+.letterContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+
+.letterContainer.centered {
+    position: relative;
+    height: 0;
+    width: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter.outgoing {
+  animation: translateOut 0.6s ease-out forwards;
+  animation-delay: var(--sequentialDelay, 0s);
+  opacity: 1;
+}
+
+@keyframes translateIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes translateOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.sizing-text {
+    opacity: 0;
+}
+

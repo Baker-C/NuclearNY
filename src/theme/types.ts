@@ -1,13 +1,20 @@
 export interface ThemeColors {
   primary: string;
   secondary: string;
-  background: string;
-  surface: string;
-  text: string;
-  textSecondary: string;
-  error: string;
-  success: string;
-  warning: string;
+  primaryBg: string;
+  secondaryBg: string;
+  primaryText: string;
+  secondaryText: string;
+  lightGreen: string;
+  green: string;
+  darkGreen: string;
+  blue: string;
+  darkBlue: string;
+  lightGray: string;
+  darkGray: string;
+  offWhite: string;
+  white: string;
+  black: string;
   [key: string]: string;
 }
 
@@ -19,6 +26,8 @@ export interface ThemeSpacing {
   xl: string;
   xxl: string;
   xxxl: string;
+  maxl: string;
+  maxWidth: string;
   [key: string]: string;
 }
 

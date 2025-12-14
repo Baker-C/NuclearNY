@@ -27,7 +27,8 @@
       "@/services": ["./src/services"],
       "@/screens": ["./src/screens"],
       "@/data": ["./src/data"],
-      "@/types": ["./src/types"]
+      "@/types": ["./src/types"],
+      "@/icons": ["./src/icons"]
     }
   },
   "include": ["src"],

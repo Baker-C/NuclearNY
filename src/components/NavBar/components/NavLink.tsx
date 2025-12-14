@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { NavBarVariant } from '@/providers/NavBarProvider';
 import styles from './NavLink.module.css';
 
 interface NavLinkProps {
@@ -8,6 +9,7 @@ interface NavLinkProps {
   hasDropdown?: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  variant?: NavBarVariant;
 }
 
 export const NavLink: React.FC<NavLinkProps> = ({
@@ -16,15 +18,18 @@ export const NavLink: React.FC<NavLinkProps> = ({
   hasDropdown = false,
   onMouseEnter,
   onMouseLeave,
+  variant = 'default',
 }) => {
+  const navLinkClasses = `${styles.navLink} ${variant === 'glass' ? styles.glass : ''}`;
+  
   if (hasDropdown) {
     return (
       <div
-        className={styles.navLinkWrapper}
+        className={`${styles.navLinkWrapper} ${variant === 'glass' ? styles.glass : ''}`}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <Link to={href} className={styles.navLink}>
+        <Link to={href} className={navLinkClasses}>
           {title}
         </Link>
         <span className={styles.dropdownArrow}>▼</span>
@@ -33,7 +38,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
   }
 
   return (
-    <Link to={href} className={styles.navLink}>
+    <Link to={href} className={navLinkClasses}>
       {title}
     </Link>
   );

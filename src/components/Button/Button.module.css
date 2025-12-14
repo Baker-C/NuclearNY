@@ -1,0 +1,119 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-md);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid;
+  border-radius: var(--spacing-xxl);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+  pointer-events: none;
+}
+
+.button:not(.disabled):hover::after {
+  transform: scale(4);
+}
+
+.button:not(.disabled):active {
+  transform: scale(0.98);
+}
+
+.button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button.disabled::after {
+  display: none;
+}
+
+/* Primary button styles */
+.primary {
+  color: var(--color-white);
+  background-color: var(--color-darkGreen);
+  border-color: var(--color-green);
+}
+
+.primary:not(.disabled):hover {
+  background-color: var(--color-green);
+  border-color: var(--color-lightGreen);
+}
+
+/* Secondary button styles */
+.secondary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-secondary);
+}
+
+.secondary:not(.disabled):hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-blue);
+}
+
+/* Error button styles */
+.error {
+  color: var(--color-white);
+  background-color: var(--color-darkBlue);
+  border-color: var(--color-blue);
+}
+
+.error:not(.disabled):hover {
+  background-color: var(--color-blue);
+  border-color: var(--color-secondary);
+}
+
+.text {
+  display: inline-block;
+}
+
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+

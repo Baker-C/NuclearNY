@@ -1,0 +1,2 @@
+export { RotatingText } from './RotatingText';
+
