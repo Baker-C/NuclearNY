@@ -4,10 +4,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--spacing-xxl) var(--spacing-lg);
+  padding: var(--spacing-xxl) 0;
   width: 100%;
-  max-width: 800px;
   margin: 0 auto;
+  transform: translateY(-60px);
+  background-color: var(--color-background);
+  border-radius: var(--spacing-lg) var(--spacing-lg) 0 0;
 }
 
 .title {

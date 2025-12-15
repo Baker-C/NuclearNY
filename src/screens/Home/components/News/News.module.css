@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  padding: var(--spacing-xxl) var(--spacing-maxl);
+  max-width: var(--spacing-maxWidth);
+  margin: 0 auto;
+}
+
+.heading {
+  color: var(--color-text);
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-heading);
+  margin: 0 0 var(--spacing-xl) 0;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .heading {
+    font-size: var(--font-size-xl);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+}
+

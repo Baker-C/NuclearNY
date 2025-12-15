@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useAppTheme } from '@/utils/useAppTheme';
 import { createStyles } from '@/utils/createStyles';
-import { Button } from '@/components/Button';
+import { Button, ContentSection } from '@/components';
 import styles from './About.module.css';
 
 export interface AboutProps {
@@ -29,7 +29,7 @@ export const About: React.FC<AboutProps> = ({
     .join(' ');
 
   return (
-    <section
+    <ContentSection
       className={containerClasses}
       style={themeStyles}
     >
@@ -39,7 +39,7 @@ export const About: React.FC<AboutProps> = ({
         text={buttonText}
         accessory={{ side: 'right' }}
       />
-    </section>
+    </ContentSection>
   );
 };
 

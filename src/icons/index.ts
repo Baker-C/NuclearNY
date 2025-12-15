@@ -1,2 +1,10 @@
 export { DefaultArrowIcon } from './DefaultArrowIcon';
 export type { DefaultArrowIconProps } from './DefaultArrowIcon';
+export { FacebookIcon } from './FacebookIcon';
+export type { FacebookIconProps } from './FacebookIcon';
+export { TwitterIcon } from './TwitterIcon';
+export type { TwitterIconProps } from './TwitterIcon';
+export { LinkedInIcon } from './LinkedInIcon';
+export type { LinkedInIconProps } from './LinkedInIcon';
+export { MoreIcon } from './MoreIcon';
+export type { MoreIconProps } from './MoreIcon';

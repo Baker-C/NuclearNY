@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  padding: var(--spacing-maxl);
+}
+
+.content {
+  all: inherit;
+  max-width: var(--spacing-maxWidth);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+

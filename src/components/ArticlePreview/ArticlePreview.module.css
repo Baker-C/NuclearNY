@@ -26,6 +26,7 @@
 
 .title:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /* When container has hover on title, style the image */
@@ -33,11 +34,13 @@
   opacity: 0.9;
   transform: scale(1.02);
   transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
 }
 
 /* When container has hover on image container, underline title */
 .container:has(.imageContainer:hover) .title {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .description {
@@ -77,6 +80,11 @@
   width: 100%;
   max-width: 200px;
   max-height: 100px;
+  cursor: pointer;
+}
+
+.imageContainer:hover img {
+  cursor: pointer;
 }
 
 .image {

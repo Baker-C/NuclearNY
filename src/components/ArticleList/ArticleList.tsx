@@ -28,12 +28,14 @@ export const ArticleList: React.FC<ArticleListProps> = ({
       className={containerClasses}
       style={themeStyles}
     >
+      <div className={styles.separator} />
       {articles.map((article, index) => (
         <React.Fragment key={`${article.title}-${article.date}-${index}`}>
           <ArticlePreview {...article} />
           {index < articles.length - 1 && <div className={styles.separator} />}
         </React.Fragment>
       ))}
+      <div className={styles.separator} />
     </div>
   );
 };

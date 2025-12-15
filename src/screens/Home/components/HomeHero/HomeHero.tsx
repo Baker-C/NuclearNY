@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { createStyles, useGradient, useAppTheme } from '@/utils';
-import { RotatingText, Button } from '@/components';
+import { RotatingText, Button, ContentSection } from '@/components';
 import styles from './HomeHero.module.css';
 
 export const HomeHero: React.FC = () => {
@@ -40,7 +40,7 @@ export const HomeHero: React.FC = () => {
     >
       <div className={styles.heroGradient1} style={{ background: circularGradient1 }}></div>
       <div className={styles.heroGradient2} style={{ background: circularGradient2 }}></div>
-      <div className={styles.content}>
+      <ContentSection className={styles.content}>
         <Title />
         <p className={styles.description}>
           The most reliable carbon-free energy with minimal footprint, powering communities and industries worldwide.
@@ -50,7 +50,7 @@ export const HomeHero: React.FC = () => {
           onClick={() => {}}
           accessory={{ side: 'right' }}
         />
-      </div>
+      </ContentSection>
     </div>
   );
 };

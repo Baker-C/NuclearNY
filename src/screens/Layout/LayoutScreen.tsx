@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { HomeScreen } from '@/screens/Home';
 import { CMSScreen } from '@/screens/CMS';
 import { NotFoundScreen } from '@/screens/NotFound';
+import { AboutScreen } from '@/screens/About';
 import styles from './LayoutScreen.module.css';
 
 export const LayoutScreen: React.FC = () => {
@@ -19,6 +20,7 @@ export const LayoutScreen: React.FC = () => {
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
+          <Route path="/about-us" element={<AboutScreen />} />
           <Route path="/:pageId" element={<CMSScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
